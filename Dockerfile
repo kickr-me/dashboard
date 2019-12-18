@@ -1,6 +1,6 @@
 
 FROM ruby:alpine
-RUN apk --no-cache upgrade && apk --no-cache add build-base linux-headers git nodejs yarn sqlite tzdata && rm -rf /var/cache/apk/*
+RUN apk --no-cache upgrade && apk --no-cache add build-base linux-headers git nodejs yarn sqlite sqlite-libs tzdata && rm -rf /var/cache/apk/*
 RUN mkdir /hkick-dashboard
 WORKDIR /hkick-dashboard
 COPY . /hkick-dashboard
