@@ -1,0 +1,11 @@
+= form_with(model: match_team, local: true) do |form|
+  - if match_team.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(match_team.errors.count, "error")
+        prohibited this match_team from being saved:
+      %ul
+        - match_team.errors.full_messages.each do |message|
+          %li= message
+  .actions
+    = form.submit

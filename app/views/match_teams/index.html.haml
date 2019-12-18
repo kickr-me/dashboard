@@ -1,0 +1,14 @@
+%p#notice= notice
+%h1 Match Teams
+%table
+  %thead
+    %tr
+      %th{:colspan => "3"}
+  %tbody
+    - @match_teams.each do |match_team|
+      %tr
+        %td= link_to 'Show', match_team
+        %td= link_to 'Edit', edit_match_team_path(match_team)
+        %td= link_to 'Destroy', match_team, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Match Team', new_match_team_path

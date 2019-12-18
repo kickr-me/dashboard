@@ -1,0 +1,16 @@
+%p#notice= notice
+%h1 Rounds
+%table
+  %thead
+    %tr
+      %th Match
+      %th{:colspan => "3"}
+  %tbody
+    - @rounds.each do |round|
+      %tr
+        %td= round.match_id
+        %td= link_to 'Show', round
+        %td= link_to 'Edit', edit_round_path(round)
+        %td= link_to 'Destroy', round, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Round', new_round_path
