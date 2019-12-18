@@ -8,7 +8,13 @@
   %tbody
     - @rounds.each do |round|
       %tr
-        %td= round.match_id
+        %td
+          = round.match.title
+          (
+          = round.team_a_score
+          %strong :
+          = round.team_b_score  
+          )
         %td= link_to 'Show', round
         %td= link_to 'Edit', edit_round_path(round)
         %td= link_to 'Destroy', round, method: :delete, data: { confirm: 'Are you sure?' }

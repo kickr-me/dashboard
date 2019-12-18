@@ -8,7 +8,12 @@
         - round.errors.full_messages.each do |message|
           %li= message
   .field
-    = form.label :match_id
-    = form.text_field :match_id
+    = form.select :match_id, Match.all.collect {|x| [x.title, x.id]}, {}
+  .field
+    = form.label :team_a_score
+    = form.number_field :team_a_score, min: 0, max: 8
+    = form.label :team_b_score
+    = form.number_field :team_b_score, min: 0, max: 8
+
   .actions
     = form.submit

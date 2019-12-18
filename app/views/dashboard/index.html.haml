@@ -1,0 +1,9 @@
+= link_to 'Players', players_url
+= link_to 'Teams', match_teams_url
+= link_to 'Matches', matches_url
+= link_to 'Rounds', rounds_url
+
+%h1 Last Played Match
+= @last_match.title
+%strong= @last_match.winning_score
+= @last_match.round_scores

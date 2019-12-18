@@ -3,6 +3,9 @@
   %strong Username:
   = @player.username
 %p
+  %strong Wins:
+  =@player.matches_won
+%p
   %strong Avatar url:
   = @player.avatar_url
 = link_to 'Edit', edit_player_path(@player)

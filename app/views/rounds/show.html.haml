@@ -1,7 +1,12 @@
 %p#notice= notice
 %p
-  %strong Match:
-  = @round.match_id
+  %strong
+  = @round.match.title
+%p
+  = @round.team_a_score
+  %strong :
+  = @round.team_b_score
+
 = link_to 'Edit', edit_round_path(@round)
 |
 = link_to 'Back', rounds_path

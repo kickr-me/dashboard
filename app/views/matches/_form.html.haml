@@ -1,4 +1,7 @@
 = form_with(model: match, local: true) do |form|
+  = form.select :team_a_id, MatchTeam.all.collect {|x| [x.title, x.id]}, {}
+  vs
+  = form.select :team_b_id, MatchTeam.all.collect {|x| [x.title, x.id]}, {}
   - if match.errors.any?
     #error_explanation
       %h2
@@ -7,6 +10,5 @@
       %ul
         - match.errors.full_messages.each do |message|
           %li= message
-  = collection_select(:match, :player_1_id, Player.order(:username),:id,:username
   .actions
     = form.submit

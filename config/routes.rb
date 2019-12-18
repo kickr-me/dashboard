@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'dashboard#index'
   resources :match_teams
   resources :teams
   resources :rounds

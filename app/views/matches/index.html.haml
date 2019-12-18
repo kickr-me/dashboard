@@ -3,10 +3,17 @@
 %table
   %thead
     %tr
+      %th Title
+      %th Winning Score
+      %th Round Scores
       %th{:colspan => "3"}
   %tbody
     - @matches.each do |match|
       %tr
+        %td= match.title
+        %td
+          %strong= match.winning_score
+        %td= match.round_scores
         %td= link_to 'Show', match
         %td= link_to 'Edit', edit_match_path(match)
         %td= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' }

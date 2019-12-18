@@ -1,4 +1,5 @@
 = form_with(model: match_team, local: true) do |form|
+  = form.select :player_ids, Player.all.collect {|x| [x.username, x.id]}, {}, multiple: true
   - if match_team.errors.any?
     #error_explanation
       %h2
