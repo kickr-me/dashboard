@@ -8,3 +8,7 @@
   = @last_match.title
   %strong= @last_match.winning_score
   = @last_match.round_scores
+  on
+  %strong= @last_match.created_at.strftime("%d. %B %Y")
+  at
+  %strong= @last_match.created_at.strftime("%H:%M %Z")

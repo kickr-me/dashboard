@@ -3,10 +3,12 @@
 %table
   %thead
     %tr
+      %th Teamname
       %th{:colspan => "3"}
   %tbody
     - @match_teams.each do |match_team|
       %tr
+        %td= match_team.title
         %td= link_to 'Show', match_team
         %td= link_to 'Edit', edit_match_team_path(match_team)
         %td= link_to 'Destroy', match_team, method: :delete, data: { confirm: 'Are you sure?' }

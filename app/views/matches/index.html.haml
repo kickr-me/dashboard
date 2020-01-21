@@ -6,14 +6,19 @@
       %th Title
       %th Winning Score
       %th Round Scores
+      %th Time
       %th{:colspan => "3"}
   %tbody
-    - @matches.each do |match|
+    - @matches.reverse_each do |match|
       %tr
         %td= match.title
         %td
           %strong= match.winning_score
         %td= match.round_scores
+        %td
+          %strong= match.created_at.strftime("%d. %B %Y")
+          at
+          %strong= match.created_at.strftime("%H:%M %Z")
         %td= link_to 'Show', match
         %td= link_to 'Edit', edit_match_path(match)
         %td= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' }

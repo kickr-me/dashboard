@@ -1,11 +1,13 @@
 class Match < ApplicationRecord
     has_many :rounds, dependent: :delete_all
 
-    belongs_to :team_a, class_name: "MatchTeam"
-    belongs_to :team_b, class_name: "MatchTeam"
+    belongs_to :team_a, class_name: "MatchTeam", optional: true
+    belongs_to :team_b, class_name: "MatchTeam", optional: true
 
     def title
-        "[#{team_a.title}] vs [#{team_b.title}]"
+        "[#{team_a.title}] vs. [#{team_b.title}]"
+    rescue StandardError
+        "N/A vs. N/A"
     end
 
     def round_scores
