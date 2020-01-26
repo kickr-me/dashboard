@@ -1,13 +1,29 @@
 class Match < ApplicationRecord
     has_many :rounds, dependent: :delete_all
 
-    belongs_to :team_a, class_name: "MatchTeam", optional: true
-    belongs_to :team_b, class_name: "MatchTeam", optional: true
+    belongs_to :team_a_front, class_name: 'Player', optional: true
+    belongs_to :team_a_back,  class_name: 'Player', optional: true
+    belongs_to :team_b_front, class_name: 'Player', optional: true
+    belongs_to :team_b_back,  class_name: 'Player', optional: true
+
+    validate :no_duplicate_players
 
     def title
-        "[#{team_a.title}] vs. [#{team_b.title}]"
+        "[#{team_a.pluck(:username).to_sentence}] vs. [#{team_b.pluck(:username).to_sentence}]"
     rescue StandardError
         "N/A vs. N/A"
+    end
+
+    def team_a
+        [team_a_front, team_a_back]
+    end
+
+    def team_b
+        [team_b_front, team_b_back]
+    end
+
+    def players
+        [team_a_front_id, team_a_back_id, team_b_front_id, team_b_back_id]
     end
 
     def round_scores
@@ -47,6 +63,18 @@ class Match < ApplicationRecord
 
         return false unless winning_team
         
-        winning_team.players.include?(player)
+        winning_team.include?(player)
     end
+
+    private
+
+    def no_duplicate_players
+        players = [team_a_front_id, team_a_back_id, team_b_front_id, team_b_back_id].compact
+        p players
+        return true if players.size == players.uniq.size
+        
+        errors.add(:players, 'players must be uniq')
+        false
+    end
+
 end
