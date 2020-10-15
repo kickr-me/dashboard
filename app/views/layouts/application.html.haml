@@ -8,4 +8,10 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    .ui.menu
+      .ui.header.item kickr
+      = link_to 'Players', players_url, class: 'ui item'
+      = link_to 'Teams', match_teams_url, class: 'ui item'
+      = link_to 'Matches', matches_url, class: 'ui item'
+      = link_to 'Rounds', rounds_url, class: 'ui item'
     = yield
