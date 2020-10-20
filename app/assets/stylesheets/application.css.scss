@@ -14,3 +14,27 @@
  *= require_self
  */
 @import "semantic-ui";
+
+$colors: (
+        blue: #3b83c0,
+        green: #5bbd72,
+        orange: #e07b53,
+        pink: #d9499a,
+        purple: #564f8a,
+        red: #d95c5c,
+        teal: #00b5ad,
+        yellow: #f2c61f,
+        black: #1b1c1d,
+        grey: #767676
+);
+
+@each $color, $value in $colors{
+  .text.#{"" + $color}{
+    color: #{$value};
+  }
+  td.#{"" + $color},
+  tr.#{"" + $color}{
+    background-color: #{$value} !important;
+    color: white !important;
+  }
+}

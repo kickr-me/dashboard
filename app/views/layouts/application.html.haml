@@ -9,9 +9,13 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     .ui.menu
-      .ui.header.item kickr
-      = link_to 'Players', players_url, class: 'ui item'
-      = link_to 'Teams', match_teams_url, class: 'ui item'
-      = link_to 'Matches', matches_url, class: 'ui item'
-      = link_to 'Rounds', rounds_url, class: 'ui item'
-    = yield
+      %a.ui.header.item{href: '/'}
+        = semantic_icon(:futbol, :red)
+        .text.red kickr
+      = link_to players_url, class: 'ui item' do
+        = semantic_icon(:users)
+        Players
+      = link_to matches_url, class: 'ui item' do
+        = semantic_icon(:chess)
+        Matches
+    .ui.container= yield

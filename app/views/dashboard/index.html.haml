@@ -1,9 +1,31 @@
 - if @last_match
-  %h1 Last Played Match
-  = @last_match.title
-  %strong= @last_match.winning_score
-  = @last_match.round_scores
-  on
-  %strong= @last_match.created_at.strftime("%d. %B %Y")
-  at
-  %strong= @last_match.created_at.strftime("%H:%M %Z")
+  %h1.ui.center.aligned.icon.header
+    = semantic_icon(:futbol)
+    Last played Match
+    .sub.header
+      %strong= @last_match.created_at.strftime("%d. %B %Y")
+      at
+      %strong= @last_match.created_at.strftime("%H:%M %Z")
+  .ui.three.column.grid
+    .seven.wide.column
+      .ui.two.column.grid
+        - if @last_match.team_a_won?
+          .ui.green.disabled.fluid.button Winner
+        - else
+          .ui.red.disabled.fluid.button Loser
+        .column= render partial: 'shared/player_card', locals: {player: @last_match.team_a_front}
+        .column= render partial: 'shared/player_card', locals: {player: @last_match.team_a_back}
+    .two.wide.column
+      .ui.massive.vertical.divider
+        = @last_match.winning_score
+    .seven.wide.column
+      .ui.two.column.grid
+        - if @last_match.team_b_won?
+          .ui.green.disabled.fluid.button Winner
+        - else
+          .ui.red.disabled.fluid.button Loser
+        .column= render partial: 'shared/player_card', locals: {player: @last_match.team_b_front}
+        .column= render partial: 'shared/player_card', locals: {player: @last_match.team_b_back}
+
+%h2.ui.dividing.header Statistics
+= line_chart Match.group_by_day(:created_at).count

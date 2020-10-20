@@ -11,4 +11,24 @@ class Player < ApplicationRecord
           match.won_by_player(self)
         end
     end
+
+    def rank
+        case matches_won
+        when 0..10 then 1
+        when 11..20 then 2
+        when 21..30 then 3
+        when 31..40 then 4
+        when 41..50 then 5
+        else
+          17
+        end + 4
+    end
+
+    def rank_title
+        "Rank #{rank}"
+    end
+
+    def rank_url
+      "ranks/#{rank}.svg"
+    end
 end
