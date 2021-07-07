@@ -30,10 +30,14 @@ gem 'rails-erd'
 gem 'haml-rails'
 gem 'fomantic-ui-sass'
 
+gem 'mqtt'
+
 gem 'groupdate'
 gem "chartkick"
 
 gem 'rack-cors'
+
+gem 'merit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

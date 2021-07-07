@@ -11,20 +11,23 @@
       %img.ui.image{src: image_url('ranks/special-3.svg'), height: '25px', style: 'margin: 0;'}
     .header
       = player.username
+      = semantic_icon(:crown, :yellow) if player.vip
     .meta
       %span.date
         Joined in
         = player.created_at.year
     .meta
-      %span.ui.empty.tiny.circular.green.label
-      %span.text.green
-        currently
-        %b playing
-        with Marvin against Stoeckl and Joshi
-        %b
-          (
-          = semantic_icon(:small, :loading, :green, :fitted, :sync)
-          1:0)
+      - if !Match.last.finished && Match.last.players.include?(player.id)
+        %span.ui.empty.tiny.circular.green.label
+        %span.text.green
+          currently
+          %b playing
+          = Match.last.team_a.pluck(:username).to_sentence
+          against
+          = Match.last.team_b.pluck(:username).to_sentence
+          %b
+            = Match.last.winning_score
+            = semantic_icon(:small, :loading, :green, :fitted, :sync)
   .extra.content
     %i.futbol.icon
     - total_matches = player.matches.count

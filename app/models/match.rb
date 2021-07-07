@@ -53,7 +53,7 @@ class Match < ApplicationRecord
     end
 
     def won_by_player(player)
-        winning_team = if team_a_won? 
+        winning_team = if team_a_won?
             team_a
         elsif team_b_won?
             team_b
