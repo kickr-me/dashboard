@@ -31,7 +31,7 @@ class Player < ApplicationRecord
 
     def skill_diff
       skills = true_skill_ratings.last(2).pluck(:mean)
-      skills[0] - skills[1]
+      skills[1] - skills[0]
     rescue
       0
     end
