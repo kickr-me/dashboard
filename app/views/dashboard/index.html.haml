@@ -31,13 +31,14 @@
 .ui.grid
   .row
     .eight.wide.column
-      %h3.ui.dividing.header Games per day
+      %h3.ui.dividing.header
+        Game History
+        .sub.header Games per day
       = line_chart Match.group_by_day(:created_at).count
     .eight.wide.column
       %h3.ui.dividing.header
         Top 10 Player
-        %span{data: {tooltip: "Players with a minimum of 3 games"}}
-          %i.question.circle.outline.icon
+        .sub.header Players with a minimum of 3 games
       %table.ui.single.line.table
         %thead
           %th Rank

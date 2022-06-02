@@ -69,6 +69,9 @@ class Match < ApplicationRecord
     end
 
     def calculate_skill
+        # Skip calculation if placeholder player are part of the game
+        return if players.include?(57) || players.include?(58)
+
         team1 = [Rating.new(team_a.first.skill.mean, team_a.first.skill.deviation),
                   Rating.new(team_a.last.skill.mean, team_a.last.skill.deviation)]
         team2 = [Rating.new(team_b.first.skill.mean, team_b.first.skill.deviation),
