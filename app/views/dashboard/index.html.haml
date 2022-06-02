@@ -28,4 +28,36 @@
         .column= render partial: 'shared/player_card', locals: {player: @last_match.team_b_back}
 
 %h2.ui.dividing.header Statistics
-= line_chart Match.group_by_day(:created_at).count
+.ui.grid
+  .row
+    .eight.wide.column
+      %h3.ui.dividing.header Games per day
+      = line_chart Match.group_by_day(:created_at).count
+    .eight.wide.column
+      %h3.ui.dividing.header
+        Top 10 Player
+        %span{data: {tooltip: "Players with a minimum of 3 games"}}
+          %i.question.circle.outline.icon
+      %table.ui.single.line.table
+        %thead
+          %th Rank
+          %th Name
+          %th Skill
+        %tbody
+          - @skill_players.reverse.each_with_index do |player, i|
+            %tr
+              %td= i + 1
+              %td= link_to player.username, player
+              %td
+                = player.skill.mean.round(2)
+                %span{data: {tooltip: player.skill_diff.round(2)}}
+                  - if player.skill_diff.positive?
+                    - if player.skill_diff > 2
+                      %i.angle.double.up.icon.green
+                    - else
+                      %i.angle.up.icon.green
+                  - else
+                    - if player.skill_diff < -2
+                      %i.angle.double.down.icon.red
+                    - else
+                      %i.angle.down.icon.red

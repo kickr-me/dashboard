@@ -29,6 +29,14 @@ class Player < ApplicationRecord
       true_skill_ratings.last || TrueSkillRating.new(mean: 25.0, deviation: 8.33)
     end
 
+    def skill_diff
+      skills = true_skill_ratings.last(2).pluck(:mean)
+      skills[0] - skills[1]
+    rescue
+      0
+    end
+
+
     def add_skill(mean, deviation, match_id)
       TrueSkillRating.create!(player_id: id, mean: mean, deviation: deviation, match_id: match_id)
     end
