@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_203810) do
+ActiveRecord::Schema.define(version: 2022_06_02_163317) do
 
   create_table "badges_sashes", force: :cascade do |t|
     t.integer "badge_id"
@@ -106,6 +106,15 @@ ActiveRecord::Schema.define(version: 2021_07_07_203810) do
   create_table "sashes", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "true_skill_ratings", force: :cascade do |t|
+    t.float "mean"
+    t.float "deviation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "player_id"
+    t.index ["player_id"], name: "index_true_skill_ratings_on_player_id"
   end
 
   add_foreign_key "rounds", "matches"

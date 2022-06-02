@@ -6,9 +6,9 @@
   .content
     %img.ui.right.floated.image{src: image_url(player.rank_url), height: '50px', style: 'margin: 0;', title: player.rank_title}
     .ui.right.floated.images
-      %img.ui.image{src: image_url('ranks/special-1.svg'), height: '25px', style: 'margin: 0;'}
-      %img.ui.image{src: image_url('ranks/special-2.svg'), height: '25px', style: 'margin: 0;'}
-      %img.ui.image{src: image_url('ranks/special-3.svg'), height: '25px', style: 'margin: 0;'}
+      /%img.ui.image{src: image_url('ranks/special-1.svg'), height: '25px', style: 'margin: 0;'}
+      /%img.ui.image{src: image_url('ranks/special-2.svg'), height: '25px', style: 'margin: 0;'}
+      /%img.ui.image{src: image_url('ranks/special-3.svg'), height: '25px', style: 'margin: 0;'}
     .header
       = player.username
       = semantic_icon(:crown, :yellow) if player.vip
@@ -34,3 +34,5 @@
     = total_matches
     = 'Match'.pluralize(total_matches)
     = "(#{player.matches_won} won)"
+    %span.right.floated
+      %b= player.skill.mean.round(2)

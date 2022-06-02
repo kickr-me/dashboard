@@ -39,6 +39,8 @@ gem 'rack-cors'
 
 gem 'merit'
 
+gem 'trueskill', github: "saulabs/trueskill"
+
 gem 'listen'
 gem 'psych', '<4'
 

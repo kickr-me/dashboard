@@ -8,7 +8,7 @@
       .ui.basic.segment
         %h3.ui.dividing.header Last 5 matches
         .ui.large.feed
-          - @player.matches.each do |match|
+          - @player.matches.last(5).reverse.each do |match|
             - won = match.won_by_player(@player)
             .event
               .label
@@ -18,16 +18,15 @@
                   = semantic_icon(:circular, :times, :red)
               .content
                 .summary
-                  %a.user
-                    Robert
                   - if won
                     won
                   - else
                     lost
-                  %a a match
+                  a match
                   = match.winning_score
                   .date
-                    1 Hour Ago
+                    = time_ago_in_words(match.created_at)
+                    ago
                 .meta
                   = semantic_icon(:users)
                   = match.team_a.pluck(:username).to_sentence

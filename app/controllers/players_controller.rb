@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    @players = Player.all.sort_by{|p| p.matches.last&.created_at || 2.years.ago}.reverse
   end
 
   # GET /players/1
