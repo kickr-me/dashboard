@@ -81,10 +81,10 @@ class Match < ApplicationRecord
 
       graph.update_skills
 
-      team_a.first.add_skill(team1.first.mean, team1.first.deviation)
-      team_a.last.add_skill(team1.last.mean, team1.last.deviation)
-      team_b.first.add_skill(team2.first.mean, team2.first.deviation)
-      team_b.last.add_skill(team2.last.mean, team2.last.deviation)
+      team_a.first.add_skill(team1.first.mean, team1.first.deviation, id)
+      team_a.last.add_skill(team1.last.mean, team1.last.deviation, id)
+      team_b.first.add_skill(team2.first.mean, team2.first.deviation, id)
+      team_b.last.add_skill(team2.last.mean, team2.last.deviation, id)
 
     end
 

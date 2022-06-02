@@ -26,10 +26,10 @@ class Player < ApplicationRecord
     end
 
     def skill
-      true_skill_ratings.last
+      true_skill_ratings.last || TrueSkillRating.new(mean: 25.0, deviation: 8.33)
     end
 
-    def add_skill(mean, deviation)
-      TrueSkillRating.create!(player_id: id, mean: mean, deviation: deviation)
+    def add_skill(mean, deviation, match_id)
+      TrueSkillRating.create!(player_id: id, mean: mean, deviation: deviation, match_id: match_id)
     end
 end

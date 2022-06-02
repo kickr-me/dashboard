@@ -36,9 +36,9 @@
       .ui.basic.right.floated.segment
         = render partial: 'shared/player_card', locals: {player: @player, editable: true}
   .row
-    .eight.wide.column
+    .ten.wide.column
+      %h3.ui.dividing.header TrueSkill History
+      = line_chart @player.true_skill_ratings.map{|r| [r.match.created_at, r.mean.round(2)]}, points: false
+    .six.wide.column
       %h3.ui.dividing.header Win/Loose Ratio
       = pie_chart({won: @player.matches_won, lost: @player.matches.count - @player.matches_won}, colors: ['#5bbd72', '#d95c5c'])
-    .eight.wide.column
-      %h3.ui.dividing.header Goal Ratio
-      = pie_chart({goals: 0, 'goal against': 0}, colors: ['#5bbd72', '#d95c5c'])
