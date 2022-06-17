@@ -13,6 +13,7 @@ unless ENV['SKIP_MQTT']
       c.subscribe('round/current')
       c.subscribe('round/goals')
       c.subscribe('round/end')
+      c.subscribe('score/undo-round')
       c.get do |topic,message|
         case topic
         when 'game/end'
@@ -53,6 +54,8 @@ unless ENV['SKIP_MQTT']
           else
             Round.last&.update(team_b_score: message)
           end
+        when 'score/undo-round'
+          Round.last&.destroy
         end
       end
     end
