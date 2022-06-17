@@ -3,7 +3,7 @@ unless ENV['SKIP_MQTT']
     first_game_start = true
 
     MQTT::Client.connect('172.30.1.32', 1883) do |c|
-      c.publish('players', Player.all.sort_by{|p| p.matches.last&.created_at || 2.years.ago}.reverse.to_json, true)
+      c.publish('players', Player.all.sort_by{|p| p.matches.last&.created_at || 2.years.ago}.reverse.to_json(include: :skill), true)
       #c.publish('players', Player.all.to_json, true)
       c.subscribe('game/end')
       c.subscribe('game/status')
