@@ -34,11 +34,11 @@
       %h3.ui.dividing.header
         Game History
         .sub.header Games per day
-      = line_chart Match.group_by_day(:created_at).count
+      = line_chart [data: Match.group_by_day(:created_at).count], points: false, legend: false, curve: false
     .eight.wide.column
       %h3.ui.dividing.header
         Top 10 Player
-        .sub.header Players with a minimum of 3 games
+        .sub.header Players with a minimum of 7 games
       %table.ui.single.line.table
         %thead
           %th Rank

@@ -1,7 +1,7 @@
 - editable = false if local_assigns[:editable].nil?
 
 %a.ui.card{href: editable ? edit_player_url(player) : player_url(player)}
-  .image{style: 'min-height: 207px'}
+  .image{style: 'min-height: 207px; max-height: 207px; overflow: hidden'}
     %img{style: 'object-fit: cover;', src: player.avatar_url || "http://placebeard.it/600/600/#{player.id}"}
   .content
     %img.ui.right.floated.image{src: image_url(player.rank_url), height: '50px', style: 'margin: 0;', title: player.rank_title}
@@ -33,6 +33,6 @@
     - total_matches = player.matches.count
     = total_matches
     = 'Match'.pluralize(total_matches)
-    = "(#{player.matches_won} won)"
     %span.right.floated
       %b= player.skill.mean.round(2)
+      = "(±#{player.skill.deviation.round(1)})"

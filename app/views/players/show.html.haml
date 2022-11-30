@@ -38,7 +38,11 @@
   .row
     .ten.wide.column
       %h3.ui.dividing.header TrueSkill History
-      = line_chart @player.true_skill_ratings.map{|r| [r.match.created_at, r.mean.round(2)]}, points: false
+      - all_skills = Player.all.map{|p| p.skill.mean}
+      - average = all_skills.sum(0.0) / all_skills.size
+      - player_data = @player.true_skill_ratings.map{|r| [r.match.created_at, r.mean.round(2)]}
+      - average_data = @player.true_skill_ratings.map{|r| [r.match.created_at, average.round(2)]}
+      = line_chart [{name: 'Average', data: average_data}, {name: @player.username, data: player_data}], points: false, curve: false
     .six.wide.column
       %h3.ui.dividing.header Win/Loose Ratio
       = pie_chart({won: @player.matches_won, lost: @player.matches.count - @player.matches_won}, colors: ['#5bbd72', '#d95c5c'])
