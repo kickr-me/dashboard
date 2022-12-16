@@ -1,4 +1,5 @@
 unless ENV['SKIP_MQTT']
+  Thread.abort_on_exception = true
   Thread.new do
     first_game_start = true
 
