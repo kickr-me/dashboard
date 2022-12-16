@@ -1,6 +1,8 @@
 - editable = false if local_assigns[:editable].nil?
 
 %a.ui.card{href: editable ? edit_player_url(player) : player_url(player)}
+  - if player.inactive
+    .ui.top.attached.red.label Inactive
   .image{style: 'min-height: 207px; max-height: 207px; overflow: hidden'}
     %img{style: 'object-fit: cover;', src: player.avatar_url || "http://placebeard.it/600/600/#{player.id}"}
   .content
